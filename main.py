@@ -3,9 +3,12 @@ from bs4 import BeautifulSoup
 from xlwt import Workbook
 import datetime as dt
 
-#
+# Grabs user inputted stock ticker
+ticker = input("Please enter the ticker symbol of the stock you would like to see: ").upper()
+
 # AMD's URL link on Yahoo finance
-url = "https://finance.yahoo.com/quote/AMD?p=AMD&.tsrc=fin-srch"
+url = f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch"
+print(url)
 
 # using requests retrieves urls html docs
 r = requests.get(url)
@@ -22,7 +25,7 @@ soup_body = soup.body.div.div.div.div
 
 # There must be an easier way to do this but this is what I have currently
 current_stock_price = soup_body.find("div", class_="YDC-Lead").div.div.find("div", id="quote-header-info").find("div", class_="My(6px) Pos(r) smartphone_Mt(6px)").div.div.find("span", class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)").text
-print(f" AMD is currently at: ${current_stock_price}")
+print(f"{ticker} is currently at: ${current_stock_price}")
 
 # Creates a workbook
 wb = Workbook()
