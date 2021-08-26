@@ -5,7 +5,7 @@ import datetime as dt
 # Grabs user inputted stock ticker
 ticker = input("Please enter the ticker symbol of the stock you would like to see: ").upper()
 
-# AMD's URL link on Yahoo finance
+# Yahoo's Stock URL link on Yahoo finance
 url = f"https://finance.yahoo.com/quote/{ticker}?p={ticker}&.tsrc=fin-srch"
 
 # using requests retrieves urls html docs
@@ -18,11 +18,9 @@ soup = BeautifulSoup(html, "lxml")
 # Grabs the title of the page, for this it will include the stocks name and ticker
 # print(soup.title)
 
-# Sets soup_body to the html body
-soup_body = soup.body.div.div.div.div
-
-# There must be an easier way to do this but this is what I have currently
-current_stock_price = soup_body.find("div", class_="YDC-Lead").div.div.find("div", id="quote-header-info").find("div", class_="My(6px) Pos(r) smartphone_Mt(6px)").div.div.find("span", class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)").line
+# Again, there has to be an easier way I simply have not found that way yet
+# Due to website change. I updated the code to try and correct the change in html
+current_stock_price = soup.find("body").div.div.div.div.div.find("div", class_="YDC-Lead").div.div.find("div", id="Lead-4-QuoteHeader-Proxy").div.find("div", class_="My(6px) Pos(r) smartphone_Mt(6px)").div.find("span", class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)").text
 print(f"{ticker} is currently at: ${current_stock_price}")
 
 
