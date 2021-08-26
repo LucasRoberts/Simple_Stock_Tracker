@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from xlwt import Workbook
+import datetime as dt
 
+#
 # AMD's URL link on Yahoo finance
 url = "https://finance.yahoo.com/quote/AMD?p=AMD&.tsrc=fin-srch"
 
@@ -30,6 +32,27 @@ sheet1 = wb.add_sheet("Stock Data")
 sheet1.write(0, 0, "")
 sheet1.write(0, 1, "Stock")
 sheet1.write(0, 2, "Date")
+
+# Checking to see if the time is during open market hours
+current_time = dt.datetime.now()
+
+# Market opens at 9:30
+# Open hour
+hour_open = 9
+# Open minute
+minute_open = 30
+# Market closes at 4:30
+# Close Hour 4
+hour_close = 4
+# Close minute
+minute_close = 30
+
+if current_time.hour >= hour_open and current_time.minute >= minute_open and current_time.hour <= hour_close and current_time.minute <= minute_close:
+    print("hello")
+
+
+# Adding the stock price and time to excel sheet
+
 
 wb.save("Stock Tracker.xls")
 
