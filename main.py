@@ -23,7 +23,7 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
                          "Chrome/72.0. 3626.121 Safari/537.36."}
 
 current_date = date.today()
-market_close = dt.datetime(year=current_date.year, month=current_date.month, day=current_date.day, hour=16, minute=30)
+market_close = dt.datetime(year=current_date.year, month=current_date.month, day=current_date.day, hour=16, minute=0)
 current_time = dt.datetime.now()
 market_hours = ""
 if current_time < market_close:
