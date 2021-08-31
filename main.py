@@ -64,6 +64,4 @@ while market_hours:
     else:
         market_hours = False
 
-# TODO Modularize code
-# TODO Find a better way to access the current stock price
 # TODO Create line graph tracking stock price
